@@ -43,6 +43,8 @@ formulario.addEventListener("submit", async (e) => {
     if(catText!="Categoria" && nIntegrantes!="Integrantes"){
         if(nIntegrantes == 2 || (e3Nombre != "" && e3Apellido != "" && e3Email != "" && e3Codigo != "")){
             
+            formulario.style.display = "none";
+
             const quarySnapshot = await obtenerGrupos();
             const id = quarySnapshot.size+1;
             
@@ -108,7 +110,6 @@ const completarRegistro = (nombreEquipo, clave) =>{
     `;
 
     registroCompleto.innerHTML = htmlUsuarioFinal;
-    formulario.style.display = "none";
     registroCompleto.style.display = "block";
 };
 
