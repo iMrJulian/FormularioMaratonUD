@@ -1,11 +1,23 @@
-import {guardarGrupo, obtenerGrupos, subirArchivo} from '../BaseDatos/firebase.js'
-import { teamsToTsv, accountsToTsv } from './arrayToTsv.js';
+import {guardarGrupo, obtenerGrupos, subirArchivo, obtenerGruposAvanzada, obtenerGruposElite, subirArchivoCorreos} from '../BaseDatos/firebase.js'
+import { teamsToTsv, accountsToTsv, correosToTsv} from './arrayToTsv.js';
 
 const formulario = document.getElementById("formulario");
 const nIntegrantes = document.getElementById('Integrantes');
 const registroCompleto = document.getElementById('registroCompletado');
 
+
 window.addEventListener('DOMContentLoaded', async () => {
+
+    //const avanzada = await obtenerGruposAvanzada()
+    //const elite = await obtenerGruposElite()
+
+    // elite.forEach(doc => {
+    //     const grupo = doc.data();
+    //     console.log(grupo)
+    // });
+
+    //const quarySnapshot1 = await obtenerGrupos();
+    //guardarArchivosTsv(quarySnapshot1);
 
     // console.log(quarySnapshot);
 
@@ -116,5 +128,7 @@ const completarRegistro = (nombreEquipo, clave) =>{
 const guardarArchivosTsv = (grupos) => {
     const archivoTeams = teamsToTsv(grupos);
     const archivoAccounts = accountsToTsv(grupos);
+    const correos = correosToTsv(grupos);
     subirArchivo(archivoTeams, archivoAccounts);
+    subirArchivoCorreos(correos);
 }
